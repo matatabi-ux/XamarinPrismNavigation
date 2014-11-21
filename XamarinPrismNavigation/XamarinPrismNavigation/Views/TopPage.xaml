@@ -10,15 +10,15 @@
                 Android="10, 10, 0, 10"
                 WinPhone="10, 10, 0, 10" />
   </ContentPage.Padding>
-    <ListView ItemsSource="{Binding Items}" RowHeight="64" SelectedItem="{Binding SelectedItem}">
+    <ListView ItemsSource="{Binding Items}" RowHeight="80" SelectedItem="{Binding SelectedItem}" HorizontalOptions="FillAndExpand">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>
             <ViewCell.View>
-              <StackLayout Padding="10,10,0,10"
+              <StackLayout Padding="10,5,0,5"
                            Orientation="Horizontal"
-                           Spacing="15">
-                <Image Source="{Binding ImageSource}" Aspect="AspectFit" />
+                           Spacing="30">
+                <Image Source="{Binding ImageSource}" Aspect="AspectFit" HorizontalOptions="Start" VerticalOptions="FillAndExpand" Scale="3.0"/>
                 <Label Text="{Binding Name}" VerticalOptions="Center"/>
               </StackLayout>
             </ViewCell.View>

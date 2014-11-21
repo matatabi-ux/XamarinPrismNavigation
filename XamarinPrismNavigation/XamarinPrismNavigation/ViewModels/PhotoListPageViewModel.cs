@@ -99,6 +99,8 @@ namespace XamarinPrismNavigation.ViewModels
 
             if (navigationParameter is int && navigationMode == NavigationMode.Pushed)
             {
+                this.Items.Clear();
+
                 var nationId = (int) navigationParameter;
                 foreach (var item in this.repository.Items.Where(p => p.NationId == nationId))
                 {

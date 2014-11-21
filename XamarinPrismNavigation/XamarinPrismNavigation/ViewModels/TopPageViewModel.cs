@@ -98,6 +98,8 @@ namespace XamarinPrismNavigation.ViewModels
             this.navigationService = navigationService;
             this.repository = repository;
 
+            this.Items.Clear();
+
             foreach (var nation in this.repository.Nations)
             {
                 this.Items.Add(new NationViewModel(nation));
