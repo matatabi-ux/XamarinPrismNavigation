@@ -57,6 +57,7 @@ namespace Prism.Mvvm
         public NavigationService(IEventAggregator eventAggregator)
         {
             RootPage = new NavigationPage();
+            RootPage.Popped += OnPoped;
 
             NavigationService.eventAggregator = eventAggregator;
             NavigationService.eventAggregator.GetEvent<AppStateChangedEvent>().Subscribe(this.OnAppStateChanged);
@@ -77,7 +78,9 @@ namespace Prism.Mvvm
         /// <param name="rootPage">画面遷移用ルート画面</param>
         public static void SetRootPage(NavigationPage rootPage)
         {
+            RootPage.Popped -= OnPoped;
             RootPage = rootPage;
+            RootPage.Popped += OnPoped;
 
             if (rootPage.CurrentPage == null)
             {
@@ -166,7 +169,15 @@ namespace Prism.Mvvm
         public async Task GoBack()
         {
             await RootPage.PopAsync();
+        }
 
+        /// <summary>
+        /// 戻る遷移時の処理
+        /// </summary>
+        /// <param name="sender">イベント発行者</param>
+        /// <param name="e">イベント引数</param>
+        private static void OnPoped(object sender, NavigationEventArgs e)
+        {
             var history = NavigationStack.Skip(1).FirstOrDefault();
             if (history != null)
             {
